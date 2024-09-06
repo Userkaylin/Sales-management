@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-import stripe
+
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 # Create your views here.
