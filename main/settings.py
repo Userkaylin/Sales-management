@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': "railway",
         'USER': "postgres",
         'PASSWORD': "OrIBXiCSlexRlDIdXoaYzrbRPcomjgqm",
-        'HOST': "meticulous-empathy.railway.internal",
+        'HOST': "junction.proxy.rlwy.net",
         'PORT': "5432",
     }
 }
