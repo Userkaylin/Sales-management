@@ -77,13 +77,14 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "railway",
-        'USER': "postgres",
-        'PASSWORD': "OrIBXiCSlexRlDIdXoaYzrbRPcomjgqm",
-        'HOST': "junction.proxy.rlwy.net",
-        'PORT': "5432",
+        'NAME': "railway",  # Database name
+        'USER': "postgres",  # Username
+        'PASSWORD': "lXkDHFIqCAcsGdLWEZAivtNptzuizVfp",  # Password
+        'HOST': "junction.proxy.rlwy.net",  # Host
+        'PORT': "51918",  # Port
     }
 }
+
 AUTH_USER_MODEL = 'app.CustomUser'
 
 
