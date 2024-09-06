@@ -87,7 +87,7 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'app.CustomUser'
 
-
+CSRF_TRUSTED_ORIGINS=['https://mxrd-sales.com']
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
