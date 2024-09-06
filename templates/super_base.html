@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
+        /* Custom Scrollbar Styles */
+.scrollbar-thin {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #4A5568 #1A202C; /* For Firefox: thumb and track color */
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+    background: #1A202C; /* Track color */
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #4A5568; /* Thumb color */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+/* For Light Theme */
+.scrollbar-thin-light {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #CBD5E0 #F7FAFC; /* For Firefox: thumb and track color */
+}
+
+.scrollbar-thin-light::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.scrollbar-thin-light::-webkit-scrollbar-track {
+    background: #F7FAFC; /* Track color */
+}
+
+.scrollbar-thin-light::-webkit-scrollbar-thumb {
+    background-color: #CBD5E0; /* Thumb color */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-900 border border-b border-gray-800 p-4 flex justify-between items-center">
+        <span class="text-xl font-semibold text-yellow-600">Dashboard</span>
+        <button id="hamburger" class="md:hidden">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+        <a href='/logout/' class="bg-[#111827] shadow-sm text-yellow-800 px-3 py-1 rounded flex items-center space-x-2">
+            <span>Logout</span>
+            <!-- Inline SVG for an arrow icon -->
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+        </a>
+        
+    </nav>
+
+    <div class="flex">
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar h-screen border border-b border-gray-800 w-64 p-6 space-y-6 md:relative absolute inset-y-0 left-0 transform -translate-x-full md:transform-none md:translate-x-0 z-50">
+            <nav class="space-y-4">
+                <a href="/management-dashboard/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">Home</a>
+                <a href="/super-sales-data/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">Sales</a>
+                <a href="/super_purchase-data/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">Purchases</a>
+                <!-- Super Admin Links -->
+                <a href="/workers/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">Workers</a>
+                <a href="/outlets/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">Outlets</a>
+                
+                
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-5 space-y-8 overflow-y-auto h-screen scrollbar-thin">
+
+           {% block content %}{% endblock content %}
+
+           
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+    </script>
+    
+</body>
+</html>

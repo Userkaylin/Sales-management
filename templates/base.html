@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仪表盘</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-900 border border-b border-gray-800 p-4 flex justify-between items-center">
+        <span class="text-xl font-semibold text-yellow-400">仪表盘</span>
+        <button id="hamburger" class="md:hidden">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+        <a href='/logout/' class="bg-[#111827] shadow-sm text-yellow-800 px-3 py-1 rounded flex items-center space-x-2">
+            <span>退出</span>
+            <!-- Inline SVG for an arrow icon -->
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+        </a>
+    </nav>
+
+
+    <div class="flex">
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar h-screen bg-gray-900 border border-b border-gray-800 w-64 p-6 space-y-6 md:relative absolute inset-y-0 left-0 transform -translate-x-full md:transform-none md:translate-x-0 z-50">
+            <nav class="space-y-4">
+                <a href="/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">主页</a>
+                <a href="/sales-data/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">销售数据</a>
+                <a href="/purchase-overview/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">采购概况</a>
+                <!-- <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">成本分析</a> -->
+                <!-- <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-yellow-500">我</a> -->
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-5 space-y-8">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

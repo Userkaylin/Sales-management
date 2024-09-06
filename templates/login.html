@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-sm bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-semibold text-center mb-6">Login to Your Account</h1>
+        
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <!-- Username -->
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium mb-2">Username</label>
+                <input type="text" id="username" name="username" class="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+            </div>
+            
+            <!-- Password -->
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium mb-2">Password</label>
+                <input type="password" id="password" name="password" class="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+            </div>
+
+            <!-- Remember Me -->
+            <div class="flex items-center mb-6">
+                <input type="checkbox" id="remember_me" name="remember_me" class="h-4 w-4 text-yellow-500 bg-gray-700 rounded focus:ring-0 focus:ring-offset-0">
+                <label for="remember_me" class="ml-2 text-sm">Remember Me</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 rounded-lg transition-colors">Login</button>
+        </form>
+
+        <!-- Divider -->
+        <div class="my-6 border-t border-gray-600"></div>
+
+        <!-- Signup Link -->
+        <p class="text-center text-sm">
+            Don't have an account? 
+            <a href="{% url 'signup' %}" class="text-yellow-500 hover:underline">Sign up</a>
+        </p>
+    </div>
+
+</body>
+</html>

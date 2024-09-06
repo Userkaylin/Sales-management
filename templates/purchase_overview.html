@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- Purchases Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full max-w-7xl mb-8">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-lg font-semibold">今日采购</h2>
+            <p class="text-2xl font-bold text-yellow-500">${{ today_purchases }}</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-lg font-semibold">本周采购</h2>
+            <p class="text-2xl font-bold text-yellow-500">${{ weekly_purchases }}</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-lg font-semibold">本月采购</h2>
+            <p class="text-2xl font-bold text-yellow-500">${{ monthly_purchases }}</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-lg font-semibold">您的采购</h2>
+            <p class="text-2xl font-bold text-yellow-500">${{ total_purchases_by_user }}</p>
+        </div>
+    </div>
+
+    <!-- Purchases Data Table -->
+    <div class="w-full max-w-7xl bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-6">所有采购数据</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-900 text-white">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="p-3 text-left">网点</th>
+                        <th class="p-3 text-left">日期</th>
+                        <th class="p-3 text-left">总采购额</th>
+                        <th class="p-3 text-left">记录人</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for purchase in purchases %}
+                    <tr class="border-b border-gray-700">
+                        <td class="p-3">{{ purchase.outlet.name }}</td>
+                        <td class="p-3">{{ purchase.date }}</td>
+                        <td class="p-3">${{ purchase.total_purchases }}</td>
+                        <td class="p-3">{{ purchase.recorded_by.username }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

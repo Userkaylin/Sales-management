@@ -1,0 +1,36 @@
+{% extends "super_base.html" %}
+{% block content %}
+
+    <!-- Add Outlet Button -->
+    <div class="flex justify-between items-center w-full max-w-7xl mb-6">
+        <h2 class="text-2xl font-semibold">All Outlets Data</h2>
+        <a href="{% url 'add-outlet' %}" class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600">
+            Add Outlet
+        </a>
+    </div>
+
+    <!-- Outlets Data Table -->
+    <div class="w-full max-w-7xl bg-gray-800 p-6 rounded-lg shadow-lg">
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-900 text-white">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="p-3 text-left">Outlet Name</th>
+                        <th class="p-3 text-left">Location</th>
+                        <th class="p-3 text-left">Manager Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for outlet in outlets %}
+                    <tr class="border-b border-gray-700">
+                        <td class="p-3">{{ outlet.name }}</td>
+                        <td class="p-3">{{ outlet.location }}</td>
+                        <td class="p-3">{{ outlet.manager_name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

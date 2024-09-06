@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .card {
+            @apply bg-white shadow-lg rounded-lg p-6 mb-6;
+        }
+        .card-title {
+            @apply text-xl font-semibold mb-4;
+        }
+        .card-value {
+            @apply text-2xl font-bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold mb-6 text-indigo-500">Sales Report</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Today's Net Profit -->
+            <div class="card bg-gray-800">
+                <h2 class="card-title text-teal-300">Today's Net Profit</h2>
+                <p class="card-value text-teal-400">${{ today_net_profit|floatformat:2 }}</p>
+            </div>
+
+            <!-- Weekly Net Profit -->
+            <div class="card bg-gray-800">
+                <h2 class="card-title text-teal-300">Weekly Net Profit</h2>
+                <p class="card-value text-teal-400">${{ weekly_net_profit|floatformat:2 }}</p>
+            </div>
+
+            <!-- Monthly Net Profit -->
+            <div class="card bg-gray-800">
+                <h2 class="card-title text-teal-300">Monthly Net Profit</h2>
+                <p class="card-value text-teal-400">${{ monthly_net_profit|floatformat:2 }}</p>
+            </div>
+
+            <!-- Today's Gross Profit Margin -->
+            <div class="card bg-gray-800">
+                <h2 class="card-title text-teal-300">Today's Gross Profit Margin</h2>
+                <p class="card-value text-teal-400">{{ today_margin|floatformat:2 }}%</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

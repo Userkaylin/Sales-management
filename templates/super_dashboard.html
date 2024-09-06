@@ -1,0 +1,69 @@
+{% extends "super_base.html" %}
+{% block content %}
+   
+
+
+                    <!-- Super Admin Banner -->
+            <div class="bg-gradient-to-r from-yellow-400 to-orange-500 p-6 rounded-lg shadow-xl flex justify-between items-center text-white">
+                <div>
+                    <h1 class="text-3xl font-bold">Welcome, Super Admin!</h1>
+                    <p class="text-lg italic mt-2">"Success isn't just about what you accomplish in life; it's about what you inspire others to do."</p>
+                </div>
+            </div>
+
+
+            <!-- Cards Container -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Sales Card -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4">Total Sales</h2>
+                    <p class="text-3xl font-bold mb-4">${{total_sales_sum}}</p>
+                    {% comment %} <button class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 py-2 px-4 rounded-lg">Add a Sale</button> {% endcomment %}
+                </div>
+
+                <!-- Purchases Card -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4">Total Purchases</h2>
+                    <p class="text-3xl font-bold mb-4">${{total_purchases_sum}}</p>
+                    {% comment %} <button class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 py-2 px-4 rounded-lg">Add a Purchase</button> {% endcomment %}
+                </div>
+
+                <!-- Costing Analysis Card -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    
+    <div class="card bg-gray-800">
+        <h2 class="card-title text-teal-300">Today's Net Profit</h2>
+        <p class="card-value text-teal-400">${{ today_net_profit|floatformat:2 }}</p>
+    </div>
+
+    <!-- Weekly Net Profit -->
+    <div class="card bg-gray-800">
+        <h2 class="card-title text-teal-300">Weekly Net Profit</h2>
+        <p class="card-value text-teal-400">${{ weekly_net_profit|floatformat:2 }}</p>
+    </div>
+
+    <!-- Monthly Net Profit -->
+    <div class="card bg-gray-800">
+        <h2 class="card-title text-teal-300">Monthly Net Profit</h2>
+        <p class="card-value text-teal-400">${{ monthly_net_profit|floatformat:2 }}</p>
+    </div>
+                </div>
+
+                <!-- Total Employees Card -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4">Total Employees</h2>
+                    <p class="text-3xl font-bold mb-4">{{total_workers_count}}</p>
+                </div>
+
+                <!-- Total Outlets Card -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4">Total Outlets</h2>
+                    <p class="text-3xl font-bold mb-4">{{total_outlets_count}}</p>
+                </div>
+
+            </div>
+            
+   
+
+{% endblock content %}

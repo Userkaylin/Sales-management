@@ -1,0 +1,48 @@
+{% extends "super_base.html" %}
+{% block content %}
+
+    <!-- Sales Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl mb-8">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-lg font-semibold">Today's Sales</h2>
+            <p class="text-2xl font-bold text-yellow-500">${{ today_sales }}</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-lg font-semibold">Weekly Sales</h2>
+            <p class="text-2xl font-bold text-yellow-500">${{ weekly_sales }}</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-lg font-semibold">Monthly Sales</h2>
+            <p class="text-2xl font-bold text-yellow-500">${{ monthly_sales }}</p>
+        </div>
+        
+    </div>
+
+    <!-- Sales Data Table -->
+    <div class="w-full max-w-7xl bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-6">All Sales Data</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-900 text-white">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="p-3 text-left">Outlet</th>
+                        <th class="p-3 text-left">Date</th>
+                        <th class="p-3 text-left">Total Sales</th>
+                        <th class="p-3 text-left">Recorded By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales %}
+                    <tr class="border-b border-gray-700">
+                        <td class="p-3">{{ sale.outlet.name }}</td>
+                        <td class="p-3">{{ sale.date }}</td>
+                        <td class="p-3">${{ sale.total_sales }}</td>
+                        <td class="p-3">{{ sale.recorded_by.username }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

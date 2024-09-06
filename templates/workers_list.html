@@ -1,0 +1,49 @@
+{% extends "super_base.html" %}
+{% block content %}
+
+    <!-- Workers Data Table -->
+    <div class="w-full max-w-7xl bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-6">All Workers Data</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-900 text-white">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="p-3 text-left">Profile Picture</th>
+                        <th class="p-3 text-left">Username</th>
+                        <th class="p-3 text-left">First Name</th>
+                        <th class="p-3 text-left">Last Name</th>
+                        <th class="p-3 text-left">Email</th>
+                        <th class="p-3 text-left">Role</th>
+                        <th class="p-3 text-left">Outlet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for worker in workers %}
+                    <tr class="border-b border-gray-700">
+                        <td class="p-3">
+                            {% if worker.profile_picture %}
+                                <img src="{{ worker.profile_picture.url }}" alt="Profile Picture" class="w-10 h-10 rounded-full">
+                            {% else %}
+                                <span>No Image</span>
+                            {% endif %}
+                        </td>
+                        <td class="p-3">{{ worker.username }}</td>
+                        <td class="p-3">{{ worker.first_name }}</td>
+                        <td class="p-3">{{ worker.last_name }}</td>
+                        <td class="p-3">{{ worker.email }}</td>
+                        <td class="p-3">{{ worker.get_role_display }}</td>
+                        <td class="p-3">
+                            {% if worker.outlet %}
+                                {{ worker.outlet.name }}
+                            {% else %}
+                                <span>No Outlet Assigned</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

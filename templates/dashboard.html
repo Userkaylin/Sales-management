@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- Banner -->
+    <div class="bg-gray-800 p-4 rounded-lg shadow-lg flex justify-between items-center">
+        <div>
+            <h1 class="text-xl font-semibold">欢迎, <span id="username">{{ user.first_name }} {{ user.last_name }}</span></h1>
+            <p class="text-sm">网点: <span id="outletName">{{ user.outlet.name }}</span></p>
+        </div>
+    </div>
+    
+    <!-- Cards Container -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Sales Card -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">总销售额</h2>
+            <p class="text-3xl font-bold mb-4">${{ total_sales }}</p>
+            <button onclick="window.location.href='/add-sale/'" class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 py-2 px-4 rounded-lg">
+                添加销售
+            </button>
+        </div>
+
+        <!-- Purchases Card -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">总采购额</h2>
+            <p class="text-3xl font-bold mb-4">${{ total_purchase }}</p>
+            <button onclick="window.location.href='/add-purchase/'" class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 py-2 px-4 rounded-lg">添加采购</button>
+        </div>
+
+        <!-- Costing Analysis Card -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+          
+            <!-- Today's Net Profit -->
+            <div class="card bg-gray-800">
+                <h2 class="card-title text-teal-300">今日净利润</h2>
+                <p class="card-value text-teal-400">${{ today_net_profit|floatformat:2 }}</p>
+            </div>
+
+            <!-- Weekly Net Profit -->
+            <div class="card bg-gray-800">
+                <h2 class="card-title text-teal-300">本周净利润</h2>
+                <p class="card-value text-teal-400">${{ weekly_net_profit|floatformat:2 }}</p>
+            </div>
+
+            <!-- Monthly Net Profit -->
+            <div class="card bg-gray-800">
+                <h2 class="card-title text-teal-300">本月净利润</h2>
+                <p class="card-value text-teal-400">${{ monthly_net_profit|floatformat:2 }}</p>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+        <!-- Sales Table -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">最近销售</h2>
+            <table class="w-full text-left text-sm">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4">日期</th>
+                        <th class="py-2 px-4">网点</th>
+                        <th class="py-2 px-4">总销售额</th>
+                        <th class="py-2 px-4">记录人</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through sales data here -->
+                    {% for sale in sales %}
+                    <tr>
+                        <td class="py-2 px-4">{{ sale.date }}</td>
+                        <td class="py-2 px-4">{{ sale.outlet.name }}</td>
+                        <td class="py-2 px-4">${{ sale.total_sales }}</td>
+                        <td class="py-2 px-4">{{ sale.recorded_by.username }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Purchases Table -->
+        <div class="bg-gray-800 p-5 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">最近采购</h2>
+            <table class="w-full text-left text-sm">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4">日期</th>
+                        <th class="py-2 px-4">网点</th>
+                        <th class="py-2 px-4">总采购额</th>
+                        <th class="py-2 px-4">记录人</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through purchases data here -->
+                    {% for purchase in purchases %}
+                    <tr>
+                        <td class="py-2 px-4">{{ purchase.date }}</td>
+                        <td class="py-2 px-4">{{ purchase.outlet.name }}</td>
+                        <td class="py-2 px-4">${{ purchase.total_purchases }}</td>
+                        <td class="py-2 px-4">{{ purchase.recorded_by.username }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock content %}
